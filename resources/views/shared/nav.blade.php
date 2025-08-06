@@ -24,6 +24,9 @@
           <a class="btn btn-dark" role="button" href="/contact"  aria-expanded="false">
             contact
         </a>
+        <a class="btn btn-dark" role="button" href="/blog"  aria-expanded="false">
+            blog
+        </a>
     </li>
 </ul>
 
