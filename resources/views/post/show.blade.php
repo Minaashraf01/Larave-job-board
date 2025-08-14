@@ -2,6 +2,22 @@
 @section('title', 'My DRIVE | Blogs')
 
 @section('content')
+   @if (session('success'))
+    <style>
+        .background-green {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+
+    <div class="background-green">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="container mt-4">
     <h2 class="mb-4">Show Post: {{ $post->title }}</h2>
 

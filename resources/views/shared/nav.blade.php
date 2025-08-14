@@ -1,71 +1,63 @@
-       <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
- <!-- Left Side Of Navbar -->
-<ul class="navbar-nav me-auto">
-    <li class="nav-item dropdown">
-        <a class="btn btn-dark dropdown-toggle" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
-            Drive
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold text-primary" href="{{ url('/home') }}">
+            {{ config('app.name', 'Laravel') }}
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item" href="{{ route('drive.add') }}">Add file</a></li>
-            <li><a class="dropdown-item" href="{{ route('drive.showDrive') }}">List Files</a></li>
-        </ul>
-        <a class="btn btn-dark" role="button" href="/about"  aria-expanded="false">
-            about
-        </a>
-          <a class="btn btn-dark" role="button" href="/contact"  aria-expanded="false">
-            contact
-        </a>
-        <a class="btn btn-dark" role="button" href="/blog"  aria-expanded="false">
-            blog
-        </a>
-    </li>
-</ul>
 
+        <!-- Toggle for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left Side -->
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item dropdown">
+                    <a class="btn btn-dark dropdown-toggle me-2" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                        Drive
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" href="{{ route('drive.add') }}">Add file</a></li>
+                        <li><a class="dropdown-item" href="{{ route('drive.showDrive') }}">List Files</a></li>
                     </ul>
-                </div>
-            </div>
-        </nav>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark me-2" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark me-2" href="/contact">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark" href="/blog">Blog</a>
+                </li>
+            </ul>
+
+            <!-- Right Side -->
+            <ul class="navbar-nav ms-auto">
+                <!-- Authentication -->
+            @auth
+                <span class="navbar-brand fw-bold text-primary">{{ Auth::user()->name }}</span>
+                <form method="post" action="/logout">
+                    @csrf
+                    <button type="submit" class="btn btn-dark me-2">Logout</button>
+                </form>
+            @else
+                 <li class="nav-item me-2">
+                    <a href="/login" class="btn btn-outline-primary px-3">
+                        Login
+                    </a>
+                    
+                </li>
+                <li class="nav-item">
+                    <a href="/signup" class="btn btn-primary px-3">
+                        Sign Up
+                    </a>
+                </li>
+            @endauth
+            </ul>
+        </div>
+    </div>
+</nav>

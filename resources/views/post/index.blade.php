@@ -20,7 +20,6 @@
         {{ session('success') }}
     </div>
 @endif
-
       <a href="/blog/create" class="btn btn-outline-info btn-sm"> 
                      Create Post
                 </a> 
@@ -33,21 +32,20 @@
                 </h4>
                 <p class="card-text text-muted">By: {{ $post->author }}</p>
                 <br>
-                 <a href="" class="btn btn-outline-info btn-sm"> 
-                    View Comments
-                </a> 
-                <a href="/blog/{{ $post->id }}/edit" class="btn btn-warning btn-sm"> 
-                     Edit 
-                </a>
-                <form method="post" action="/blog/{{ $post->id }}"  onsubmit="return confirm(' Are you sure delete?')">
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                    @csrf
-                    @method('DELETE')
-                </form>
+                <div>
+                    <a href="/blog/{{ $post->id }}/edit" class="btn btn-warning btn-sm"> 
+                         Edit 
+                    </a>
+                    <form method="post" action="/blog/{{ $post->id }}"  onsubmit="return confirm(' Are you sure delete?')">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </div>
             </div>
         </div>
     @empty
-        <div class="alert alert-warning">No blog posts found.</div>
+        <div class="alert alert-warning">No comments found.</div>
     @endforelse
 </div>
 {{ $posts->links() }}
